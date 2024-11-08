@@ -27,11 +27,21 @@ function makeCalculator() {
       return this;
     },
     divide(num) {
-      result /= num;
-
-      return this;
+      if (num !== 0) {
+        result /= num;
+      } else {
+        // eslint-disable-next-line no-console
+        console.error('Cannot divide by zero');
+      }
     },
     operate(callback, num) {
+      if (typeof callback !== 'function') {
+        // eslint-disable-next-line no-console
+        console.error('The provided callback is not a valid function.');
+
+        return this;
+      }
+
       callback(num);
 
       return this;
